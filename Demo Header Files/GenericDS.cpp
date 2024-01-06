@@ -890,16 +890,16 @@ void SinglyLL<T>::Display()
     printf("NULL\n");
 }
 
-// Stack implementation
+// cStack implementation
 template <class T>
-class Stack : public LinkedList<T>
+class cStack : public LinkedList<T>
 {
 private:
     using LinkedList<T>::First;
     using LinkedList<T>::iSize;
 
 public:
-    ~Stack();
+    ~cStack();
     void push(T iNo);
     void pop();
     int top();
@@ -907,7 +907,7 @@ public:
 };
 
 template <class T>
-Stack<T>::~Stack()
+cStack<T>::~cStack()
 {
     NodeG<T> *temp = First;
     for (int i = 0; i < iSize; i++)
@@ -919,7 +919,7 @@ Stack<T>::~Stack()
 }
 
 template <class T>
-void Stack<T>::push(T iNo)
+void cStack<T>::push(T iNo)
 {
     NodeG<T> *newn = new NodeG<T>(iNo);
 
@@ -936,11 +936,11 @@ void Stack<T>::push(T iNo)
 }
 
 template <class T>
-void Stack<T>::pop()
+void cStack<T>::pop()
 {
     if (iSize == 0)
     {
-        printf("Stack is Empty");
+        printf("cStack is Empty");
         return;
     }
     else if (First->next == NULL)
@@ -958,7 +958,7 @@ void Stack<T>::pop()
 }
 
 template <class T>
-int Stack<T>::top(){
+int cStack<T>::top(){
     if(iSize == 0){
         return -1;
     }
@@ -968,7 +968,7 @@ int Stack<T>::top(){
 }
 
 template <class T>
-bool Stack<T>::isEmpty(){
+bool cStack<T>::isEmpty(){
     if(iSize == 0){
         return true;
     }
@@ -978,24 +978,24 @@ bool Stack<T>::isEmpty(){
 }
 
 
-// Queue implementation
+// cQueue implementation
 template <class T>
-class Queue : public LinkedList<T>
+class cQueue : public LinkedList<T>
 {
 private:
     using LinkedList<T>::First;
     using LinkedList<T>::iSize;
 
 public:
-    ~Queue();
+    ~cQueue();
     void enqueue(T iNo);
-    void dequeue();
+    void decQueue();
     int peek();
     bool isNull();
 };
 
 template <class T>
-Queue<T>::~Queue()
+cQueue<T>::~cQueue()
 {
     NodeG<T> *temp = First;
     for (int i = 0; i < iSize; i++)
@@ -1007,7 +1007,7 @@ Queue<T>::~Queue()
 }
 
 template <class T>
-void Queue<T>::enqueue(T iNo)
+void cQueue<T>::enqueue(T iNo)
 {
     NodeG<T> *newn = new NodeG<T>(iNo);
 
@@ -1032,11 +1032,11 @@ void Queue<T>::enqueue(T iNo)
 }
 
 template <class T>
-void Queue<T>::dequeue()
+void cQueue<T>::decQueue()
 {
     if (iSize == 0)
     {
-        printf("Queue is Empty");
+        printf("cQueue is Empty");
         return;
     }
     else if (First->next == NULL)
@@ -1054,7 +1054,7 @@ void Queue<T>::dequeue()
 }
 
 template <class T>
-int Queue<T>::peek(){
+int cQueue<T>::peek(){
     if(iSize == 0){
         return -1;
     }
@@ -1064,7 +1064,7 @@ int Queue<T>::peek(){
 }
 
 template <class T>
-bool Queue<T>::isNull(){
+bool cQueue<T>::isNull(){
     if(iSize == 0){
         return true;
     }

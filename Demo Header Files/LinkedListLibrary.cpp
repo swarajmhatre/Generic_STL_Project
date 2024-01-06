@@ -1,92 +1,45 @@
-#include <iostream>
+#include "LinkedListLibrary.h"
+#include<iostream>
 using namespace std;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//________________________________________This is the code which does all the operation on a Linked List__________________________________________
-//______________________________________________________________Feel free to contribute__________________________________________________________________
-//
-//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 template <class T>
-class NodeG
-{
-public:
-    T data;
-    NodeG *next;
-    NodeG *prev;
+NodeG<T>::NodeG() {
+    next = nullptr;
+    prev = nullptr;
+}
 
-    NodeG()
-    {
-        next = NULL;
-        prev = NULL;
-    }
+template <class T>
+NodeG<T>::NodeG(T data) {
+    this->data = data;
+    next = nullptr;
+    prev = nullptr;
+}
 
-    NodeG(T data)
-    {
-        this->data = data;
-        next = NULL;
-        prev = NULL;
-    }
-};
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________________Linked List____________________________________________________________________
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 template <class T>
-class LinkedList
-{
-protected:
-    NodeG<T> *First;
-    int iSize;
+LinkedList<T>::LinkedList() {
+    First = nullptr;
+    iSize = 0;
+}
 
-public:
-    LinkedList()
-    {
-        First = NULL;
-        iSize = 0;
-    }
-    virtual void InsertFirst(T iNo) = 0;
-    virtual void InsertLast(T iNo) = 0;
-    virtual void InsertAtPos(T iNo, int iPos) = 0;
-    virtual void DeleteFirst() = 0;
-    virtual void DeleteLast() = 0;
-    virtual void DeleteAtPos(int iPos) = 0;
-
-    int Count()
-    {
-        return iSize;
-    }
-};
+template <class T>
+int LinkedList<T>::Count() {
+    return iSize;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //_______________________________________________________________________Doubly Circular Linked List____________________________________________________________________
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <class T>
-class DoublyCL : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
-    NodeG<T> *Last;
 
-public:
-    DoublyCL();
-    ~DoublyCL();
-    void InsertFirst(T iNo);
-    void InsertLast(T iNo);
-    void InsertAtPos(T iNo, int iPos);
-    void DeleteFirst();
-    void DeleteLast();
-    void DeleteAtPos(int iPos);
-
-    void Display();
-};
 
 template <class T>
 DoublyCL<T>::DoublyCL()
@@ -277,24 +230,6 @@ void DoublyCL<T>::DeleteAtPos(int iPos)
 //_______________________________________________________________________Doublu Linear Linked List____________________________________________________________________
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <class T>
-class DoublyLL : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
-
-public:
-    ~DoublyLL();
-    void InsertFirst(T iNo);
-    void InsertLast(T iNo);
-    void InsertAtPos(T iNo, int iPos);
-    void DeleteFirst();
-    void DeleteLast();
-    void DeleteAtPos(int iPos);
-
-    void Display();
-};
 
 template <class T>
 DoublyLL<T>::~DoublyLL()
@@ -478,28 +413,6 @@ void DoublyLL<T>::DeleteAtPos(int iPos)
 //_______________________________________________________________________Singly Circular Linked List____________________________________________________________________
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <class T>
-class SinglyCL : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
-    NodeG<T> *Last;
-
-public:
-    SinglyCL();
-    ~SinglyCL();
-
-    void InsertFirst(T iNo);
-    void InsertLast(T iNo);
-    void InsertAtPos(T iNo, int iPos);
-
-    void DeleteFirst();
-    void DeleteLast();
-    void DeleteAtPos(int iPos);
-
-    void Display();
-};
 
 template <class T>
 SinglyCL<T>::SinglyCL()
@@ -686,25 +599,7 @@ void SinglyCL<T>::DeleteAtPos(int iPos)
 //_______________________________________________________________________Singly Linear Linked List____________________________________________________________________
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-template <class T>
-class SinglyLL : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
 
-public:
-    ~SinglyLL();
-    void InsertFirst(T iNo);
-    void InsertLast(T iNo);
-    void InsertAtPos(T iNo, int iPos);
-
-    void DeleteFirst();
-    void DeleteLast();
-    void DeleteAtPos(int iPos);
-
-    void Display();
-};
 
 template <class T>
 SinglyLL<T>::~SinglyLL()
@@ -890,24 +785,10 @@ void SinglyLL<T>::Display()
     printf("NULL\n");
 }
 
-// Stack implementation
-template <class T>
-class Stack : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
-
-public:
-    ~Stack();
-    void push(T iNo);
-    void pop();
-    int top();
-    bool isEmpty();
-};
+// cStack implementation
 
 template <class T>
-Stack<T>::~Stack()
+cStack<T>::~cStack()
 {
     NodeG<T> *temp = First;
     for (int i = 0; i < iSize; i++)
@@ -919,7 +800,7 @@ Stack<T>::~Stack()
 }
 
 template <class T>
-void Stack<T>::push(T iNo)
+void cStack<T>::push(T iNo)
 {
     NodeG<T> *newn = new NodeG<T>(iNo);
 
@@ -936,11 +817,11 @@ void Stack<T>::push(T iNo)
 }
 
 template <class T>
-void Stack<T>::pop()
+void cStack<T>::pop()
 {
     if (iSize == 0)
     {
-        printf("Stack is Empty");
+        printf("cStack is Empty");
         return;
     }
     else if (First->next == NULL)
@@ -958,7 +839,7 @@ void Stack<T>::pop()
 }
 
 template <class T>
-int Stack<T>::top(){
+int cStack<T>::top(){
     if(iSize == 0){
         return -1;
     }
@@ -968,7 +849,7 @@ int Stack<T>::top(){
 }
 
 template <class T>
-bool Stack<T>::isEmpty(){
+bool cStack<T>::isEmpty(){
     if(iSize == 0){
         return true;
     }
@@ -978,24 +859,11 @@ bool Stack<T>::isEmpty(){
 }
 
 
-// Queue implementation
-template <class T>
-class Queue : public LinkedList<T>
-{
-private:
-    using LinkedList<T>::First;
-    using LinkedList<T>::iSize;
+// cQueue implementation
 
-public:
-    ~Queue();
-    void enqueue(T iNo);
-    void dequeue();
-    int peek();
-    bool isNull();
-};
 
 template <class T>
-Queue<T>::~Queue()
+cQueue<T>::~cQueue()
 {
     NodeG<T> *temp = First;
     for (int i = 0; i < iSize; i++)
@@ -1007,7 +875,7 @@ Queue<T>::~Queue()
 }
 
 template <class T>
-void Queue<T>::enqueue(T iNo)
+void cQueue<T>::enqueue(T iNo)
 {
     NodeG<T> *newn = new NodeG<T>(iNo);
 
@@ -1032,11 +900,11 @@ void Queue<T>::enqueue(T iNo)
 }
 
 template <class T>
-void Queue<T>::dequeue()
+void cQueue<T>::dequeue()
 {
     if (iSize == 0)
     {
-        printf("Queue is Empty");
+        printf("cQueue is Empty");
         return;
     }
     else if (First->next == NULL)
@@ -1054,7 +922,7 @@ void Queue<T>::dequeue()
 }
 
 template <class T>
-int Queue<T>::peek(){
+int cQueue<T>::peek(){
     if(iSize == 0){
         return -1;
     }
@@ -1064,122 +932,11 @@ int Queue<T>::peek(){
 }
 
 template <class T>
-bool Queue<T>::isNull(){
+bool cQueue<T>::isNull(){
     if(iSize == 0){
         return true;
     }
     else{
         return false;
     }
-}
-int main()
-{
-    DoublyCL<int> dcobj;
-    dcobj.InsertFirst(51);
-    dcobj.InsertFirst(21);
-    dcobj.InsertFirst(11);
-    dcobj.Display();
-
-    dcobj.InsertLast(111);
-    dcobj.InsertLast(121);
-    dcobj.Display();
-
-    dcobj.InsertAtPos(101, 4);
-    dcobj.Display();
-
-    dcobj.DeleteAtPos(4);
-    dcobj.Display();
-
-    dcobj.DeleteFirst();
-    dcobj.DeleteFirst();
-    dcobj.Display();
-
-    dcobj.DeleteLast();
-    dcobj.DeleteLast();
-    dcobj.Display();
-
-    cout << endl;
-    cout << endl;
-
-    DoublyLL<int> dlobj;
-    dlobj.InsertFirst(51);
-    dlobj.InsertFirst(21);
-    dlobj.InsertFirst(11);
-    dlobj.Display();
-
-    dlobj.InsertLast(111);
-    dlobj.InsertLast(121);
-    dlobj.Display();
-
-    dlobj.InsertAtPos(101, 4);
-    dlobj.Display();
-
-    dlobj.DeleteAtPos(4);
-    dlobj.Display();
-
-    dlobj.DeleteFirst();
-    dlobj.DeleteFirst();
-    dlobj.Display();
-
-    dlobj.DeleteLast();
-    dlobj.DeleteLast();
-    dlobj.Display();
-
-    cout << endl;
-    cout << endl;
-
-    SinglyCL<int> scobj;
-    scobj.InsertFirst(51);
-    scobj.InsertFirst(21);
-    scobj.InsertFirst(11);
-    scobj.Display();
-
-    scobj.InsertLast(111);
-    scobj.InsertLast(121);
-    scobj.Display();
-
-    scobj.InsertAtPos(101, 4);
-    scobj.Display();
-
-    scobj.DeleteAtPos(4);
-    scobj.Display();
-
-    scobj.DeleteFirst();
-    scobj.DeleteFirst();
-    scobj.Display();
-
-    scobj.DeleteLast();
-    scobj.DeleteLast();
-    scobj.Display();
-
-    cout << endl;
-    cout << endl;
-
-    SinglyLL<int> slobj;
-    slobj.InsertFirst(51);
-    slobj.InsertFirst(21);
-    slobj.InsertFirst(11);
-    slobj.Display();
-
-    slobj.InsertLast(111);
-    slobj.InsertLast(121);
-    slobj.Display();
-
-    slobj.InsertAtPos(101, 4);
-    slobj.Display();
-
-    slobj.DeleteAtPos(4);
-    slobj.Display();
-
-    slobj.DeleteFirst();
-    slobj.DeleteFirst();
-    slobj.Display();
-
-    slobj.DeleteLast();
-    slobj.DeleteLast();
-    slobj.Display();
-
-    
-
-    return 0;
 }
